@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+  <h1>Text to Speech Practice</h1>
+  
+  <p>This is where I will get the Welsh text to send to the API</p>
+  <!--form area-->
+  <div class="container">
+    <div class="form-area">
+      <h1 class="title">Welsh Text to Welsh Speech</h1>
+      <form  method="get" id="welshText">
+        <div class="form-group">
+          <label for="welshText">Text in Welsh:</label>
+          <input type="text" class="form-control" id="input-text" placeholder="dw i eisiau glywed rhybeth">
+        </div>
+        <button id="submit-text" type="submit" class="btn btn-primary">Submit</button>
+        <img src="./assets/images/loading.gif" alt="loading" class="loading-indicator visually-hidden" id="loadingIndicator">
+      </form>
+    </div>
+    <div>
+      <button id="play">Play sound</button>
+    </div>
+    <!--Audio area
+    <div id="audio-area">
+      <audio
+        controls
+        src="Assets/demo.wav">
+        <a href="#">
+         Download audio
+        </a>
+      </audio>
+    </div>-->
+        
+  </div>
+  
+</body>
+<script src="textToSpeech.js"></script>
+</html>
