@@ -32,6 +32,7 @@ class TextToSpeech{
         this.BuildPlayer=this.BuildPlayer.bind(this);
         this.GetWavFile=this.GetWavFile.bind(this);
         this.GetTestWavFile=this.GetTestWavFile.bind(this); 
+        this.GetFileByFetch=this.GetFileByFetch.bind(this);
         //assign event handlers
         this.submitElement.onclick=this.OnFormSubmit.bind(this);
         this.playElement.onclick=this.Playback.bind(this);
@@ -46,12 +47,13 @@ class TextToSpeech{
         const string = `${URL}?testun=${textToSubmit}&siaradwr=&api_key=${api_Key}`;
         
         //make api get request and store the wav file
-        //this.audio=this.GetWavFile(string);
+        //this.GetWavFile(string);
         this.GetFileByFetch();
-        //this.audio=this.GetTestWavFile();
+        //this.GetTestWavFile();
     }
     GetTestWavFile(){
-        fetch('wolf-howl-6310.mp3')
+        const filename ="";
+        fetch(filename)
         .then((response) => {response.arrayBuffer()})
         .then((buffer) => this.audioContext.decodeAudioData(buffer))
         .then((decodedData) => {
@@ -78,14 +80,14 @@ class TextToSpeech{
     }); 
     }
     GetWavFile(string){
-        return fetch(string)
+        fetch(string)
         .then((response) => {response.arrayBuffer()})
         .then((buffer) => this.audioContext.decodeAudioData(buffer))
         .then((decodedData) => {
           const source = new AudioBufferSourceNode();
           source.buffer = decodedData;
           source.connect(audioCtx.destination);
-          return source;
+          this.audio=source;
         })
         .catch(error => {
             alert('There was a problem getting the sound file!')

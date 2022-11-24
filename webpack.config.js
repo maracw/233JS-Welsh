@@ -22,7 +22,8 @@ module.exports = {
     mode: !isProduction ? 'development': 'production',
     entry: {
       home: './src/js/home.js',
-      textToSpeech: './src/js/textToSpeech.js',
+      audio: './src/js/audio.js',
+      addAWord: './src/js/addAWord.js'
     },
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -78,17 +79,18 @@ module.exports = {
         filename: "index.html",
       }),
       new htmlWebpackPlugin({
-        template: path.resolve(__dirname, "./src/about.html"),
-        chunks: ["about"],
+        template: path.resolve(__dirname, "./src/audio.html"),
+        chunks: ["audio"],
         inject: "body",
-        filename: "about.html",
+        filename: "audio.html",
       }),
       new htmlWebpackPlugin({
-        template: path.resolve(__dirname, "./src/status.html"),
-        chunks: ["status"],
+        template: path.resolve(__dirname, "./src/addAWord.html"),
+        chunks: ["addAWord"],
         inject: "body",
-        filename: "status.html",
+        filename: "addAWord.html",
       }),
+
       new copyPlugin({
         patterns: [
           {

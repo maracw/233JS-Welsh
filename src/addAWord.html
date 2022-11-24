@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+<!--Layout for adding a list and adding a word-->
+
+</head>
+<body>
+<div class="container"></div>
+<div class="row">
+    <p>Add a new word to an existing list or make a new list</p>
+</div>
+<div class="row" id="input-area">
+    <div class="form">
+        <div class="col">
+            <div id="add-word">
+                     <!---form - 1st choose dropdown
+                     next  input english word - button to find translation - will add it to welsh input box
+                     next either input or search for choose/look up word to add
+                     next search for icon or picture
+                     --how to display? first n icons displayed in flex box?
+
+                     -->
+                     <div class="input-group">
+                        <label>Enter English word: </label>
+                        <input type="text" id="english" class="form-control" placeholder=""><br>
+                        <button id="translate">Find Welsh Translation</button>
+                     </div>
+                     <div class="input-group">
+                        <label>Enter Welsh word: </label>
+                        <input type="text" id="welsh" class="form-control" placeholder=""><br>
+                     </div>
+                     <div class="form-area">
+                        <p>Choose an image to put on the card</p>
+                        <button id="fetch-icon">Search for Icon from the Noun Project</button>
+                        <button id="fetch-photo">Search for Photo from Pexels.com</button>
+                        <button id="no-image">Don't use an image</button>
+                        <p>Click the image to use on card</p>
+                        <div id="display-choices" class="visually-hidden">
+
+                        </div>
+                     </div>
+             </div>
+                 <div id ="add-list"></div>
+             </div>
+             <div class="col">
+                <div id ="preview-area">
+                    <div class="card">
+                        card
+                    </div>
+                    <button type="submit">Add card to list</button>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <div>
+        <!--Message when added successfully
+        button to ask if they want to go again
+        button to return to game menu-->
+    </div>
+    
+    
+</div>
+
+</body>
+</html>
