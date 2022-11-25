@@ -9,9 +9,10 @@ class AddWord{
         //ui elements
         this.iconChoiceElement=document.getElementById("display-choices");
         //bind methods to class
-
+        this.TestIConDisplay=this.TestIConDisplay.bind(this);
         //add methods to ui elements
 
+        this.TestIConDisplay();
     }
     //onform change or indiv buttons
     /*submit should add the final*/
@@ -25,8 +26,18 @@ class AddWord{
 
     //disply default image in flexbox for testing
     TestIConDisplay(){
-    let attribution='Cat by Andre Buand from <a href="https://thenounproject.com/browse/icons/term/cat/" target="_blank" title="Cat Icons">Noun Project</a>';
-    let image="";
+    let attribution='<a href="https://thenounproject.com/browse/icons/term/cat/" target="_blank" title="Cat Icons">Noun Project</a>';
+    let imagePath ="Assets/images/noun-cat-5328621.png";
+    let htmlText="";
+    for(let i=0;i<6;i++)
+    htmlText+=`
+        <div id="result-img1" name="icon-choice" style="width: 175; height: 175;" class="p-2 bg-info">
+        <img src="${imagePath}" style="width: 200px; height: 200px;">
+        <br> 
+        ${attribution}</div>`;
+    document.getElementById("display-choices").innerHTML=htmlText;
+    
+    }
     //method to preview card
 
     //method to add card to list
@@ -39,5 +50,5 @@ class AddWord{
     or - playing the game and adding can be on one monstrous page */
 }
 
-let newAddWord;
-window.onload = ()=>{newAddWord = new AddWord();};
+
+window.onload = ()=>{let newAddWord = new AddWord();};
