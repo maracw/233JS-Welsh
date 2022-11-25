@@ -4,53 +4,55 @@
 
 </head>
 <body>
-<div class="container"></div>
-<div class="row">
-    <p>Add a new word to an existing list or make a new list</p>
-</div>
-<div class="row" id="input-area">
-    <div class="form">
-        <div class="col">
-            <div id="add-word">
-                     <!---form - 1st choose dropdown
-                     next  input english word - button to find translation - will add it to welsh input box
-                     next either input or search for choose/look up word to add
-                     next search for icon or picture
-                     --how to display? first n icons displayed in flex box?
-
-                     -->
-                     <div class="input-group">
-                        <label>Enter English word: </label>
-                        <input type="text" id="english" class="form-control" placeholder=""><br>
-                        <button id="translate">Find Welsh Translation</button>
-                     </div>
-                     <div class="input-group">
-                        <label>Enter Welsh word: </label>
-                        <input type="text" id="welsh" class="form-control" placeholder=""><br>
-                     </div>
-                     <div class="form-area">
-                        <p>Choose an image to put on the card</p>
-                        <button id="fetch-icon">Search for Icon from the Noun Project</button>
-                        <button id="fetch-photo">Search for Photo from Pexels.com</button>
-                        <button id="no-image">Don't use an image</button>
-                        <p>Click the image to use on card</p>
-                        <div id="display-choices" class="visually-hidden">
-
-                        </div>
-                     </div>
-             </div>
-                 <div id ="add-list"></div>
-             </div>
-             <div class="col">
-                <div id ="preview-area">
-                    <div class="card">
-                        card
-                    </div>
-                    <button type="submit">Add card to list</button>
+    <h1>Make a Vocab Card</h1>
+<div class="container">
+    <div class="row">
+        <div class="p-3 bg-secondary form col-sm-8" id="add-word">  
+            <!---form - 1st choose dropdown
+            next  input english word - button to find translation - will add it to welsh input box
+            next either input or search for choose/look up word to add
+             next search for icon or picture
+            --how to display? first n icons displayed in flex box?-->
+                <div class="input-group">
+                    <label>Enter English word: </label>
+                    <input type="text" id="english" class="form-control" placeholder=""><br>
+                    <button id="translate">Find Welsh Translation</button>
                 </div>
-            </div>
-         </div>
-    </div>
+                <div class="input-group">
+                    <label>Enter Welsh word: </label>
+                    <input type="text" id="welsh" class="form-control" placeholder=""><br>
+                </div>
+                <div class="form-area">
+                    <p>Choose an image to put on the card</p>
+                    <button class="btn btn-primary" id="fetch-icon">Search for Icon from the Noun Project</button>
+                    <button class="btn btn-primary" id="fetch-photo">Search for Photo from Pexels.com</button>
+                    <button class="btn btn-primary" id="no-image">Don't use an image</button>
+                    <p>Click the image to use on card</p>
+                    <!--this block becomes visible when the fetch returns-->
+                    <div id="display-choices" class="d-inline-flex flex-wrap p-3 bg-secondary text-white">
+                            <div id="result-img1" style="width: 200px; height: 200px;" class="p-2 bg-info">Flex item 1</div>
+                            <div id="result-img2" style="width: 200px" class="p-2 bg-info">Flex item 2</div>
+                            <div id="result-img3" style="width: 200px" class="p-2 bg-info">Flex item 3</div>
+                            <div id="result-img4" style="width: 200px" class="p-2 bg-info">Flex item 4</div>
+                            <div id="result-img5" style="width: 200px" class="p-2 bg-info">Flex item 5</div>
+                            <div id="result-img6" style="width: 200px" class="p-2 bg-info">Flex item 6</div>
+                    </div>
+                </div>
+        </div>
+        <div class="p-3 bg-dark text-white col-sm-4" id ="preview-area">
+                <div class="card">
+                    <div class="card-body">
+                        <p>Preview</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit">Add card to list</button>
+                    </div>
+                </div>
+                
+            </div></div>
+      </div>
+
+</div> 
 
     <div>
         <!--Message when added successfully
