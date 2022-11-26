@@ -35,6 +35,8 @@
     "chart.js": "^3.9.1",
     "less": "^4.1.1",
     "regenerator-runtime": "^0.13.9",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "oauth": "0.10.0"
+    
   }
 }
