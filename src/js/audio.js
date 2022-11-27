@@ -16,8 +16,8 @@ const URL= 'https://tts.techiaith.cymru/coqui-tts/api/v1';
 
 class TextToSpeech{
     constructor() {
-        this.audioContext = new AudioContext();
-        this.audio;
+        
+        
         //make class variables
         //this.TextToConvert="",
         //this.WelshText = "",
@@ -27,15 +27,12 @@ class TextToSpeech{
         this.audioElement = document.getElementById("audio-area");
         this.submitElement = document.getElementById("submit-text");
         this.inputElement =document.getElementById("input-text");
-        this.playElement = document.getElementById("play");
+        
         //bind methods
-        this.BuildPlayer=this.BuildPlayer.bind(this);
-        this.GetWavFile=this.GetWavFile.bind(this);
-        this.GetTestWavFile=this.GetTestWavFile.bind(this); 
-        this.GetFileByFetch=this.GetFileByFetch.bind(this);
+
         //assign event handlers
         this.submitElement.onclick=this.OnFormSubmit.bind(this);
-        this.playElement.onclick=this.Playback.bind(this);
+    ;
 
     }
     OnFormSubmit(event){
@@ -48,74 +45,18 @@ class TextToSpeech{
         
         //make api get request and store the wav file
         //this.GetWavFile(string);
-        this.GetFileByFetch();
+        this.addSource();
         //this.GetTestWavFile();
     }
-    GetTestWavFile(){
-        const filename ="";
-        fetch(filename)
-        .then((response) => {response.arrayBuffer()})
-        .then((buffer) => this.audioContext.decodeAudioData(buffer))
-        .then((decodedData) => {
-          const source = new AudioBufferSourceNode();
-          source.buffer = decodedData;
-          source.connect(audioCtx.destination);
-          return source;
-        })
-        .catch(error => {
-            alert('There was a problem getting the sound file!')
-            }
-        );
-    }
-
-    GetFileByFetch(){
-        const string='https://tts.techiaith.cymru/coqui-tts/api/v1?testun=Dw%20i%20eisau%20bywta%20tatws&siaradwr=&api_key=6ec83e1b-9879-4bc8-b28a-134fa218a5ed'
-        fetch(string)
-            .then((response) => { return response.blob(); })
-            .then((data) => {
-                var a = document.createElement("a");
-                a.href = window.URL.createObjectURL(data);
-                a.download = "FILENAME";
-                a.click();
-    }); 
-    }
-    GetWavFile(string){
-        fetch(string)
-        .then((response) => {response.arrayBuffer()})
-        .then((buffer) => this.audioContext.decodeAudioData(buffer))
-        .then((decodedData) => {
-          const source = new AudioBufferSourceNode();
-          source.buffer = decodedData;
-          source.connect(audioCtx.destination);
-          this.audio=source;
-        })
-        .catch(error => {
-            alert('There was a problem getting the sound file!')
-            }
-        );
-    }
-    
-        
-    Playback() {
-        /*const playSound = this.audioContext.createBufferSource();
-        playSound.buffer = this.audio;
-        playSound.connect(this.audioContext.destination);
-        playSound.start(this.audioContext.currentTime);*/
-            this.audio.start(0);
-            this.playElement.setAttribute('disabled', 'disabled');
-      }
-    
-
-    BuildPlayer(){
-        const htmlText=`
-        <audio
-             controls
-            src=${this.audio}>
-            <a href="#">
-                Download audio
-            </a>
-    </audio>
-        `
+    addSource(){
+        let input=document.getElementById("input-text").value;
+        const inputForCall = encodeURIComponent(input);
+        let audioElement=document.querySelector("audio");
+        const call=`https://tts.techiaith.cymru/coqui-tts/api/v1?testun=${inputForCall}&siaradwr=&api_key=6ec83e1b-9879-4bc8-b28a-134fa218a5ed`;
+        const string=`
+        <source src=${call} type="audio/wav">
+      Your browser does not support the audio element.`;
+        audioElement.innerHTML = string;
     }
     //make the api call and get response back
     //put respnse wav file into the page

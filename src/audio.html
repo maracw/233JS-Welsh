@@ -18,12 +18,16 @@
           <input type="text" class="form-control" id="input-text" placeholder="dw i eisiau glywed rhybeth">
         </div>
         <button id="submit-text" type="submit" class="btn btn-primary">Submit</button>
-        <img src="./assets/images/loading.gif" alt="loading" class="loading-indicator visually-hidden" id="loadingIndicator">
+        <!--<img src="./assets/images/loading.gif" alt="loading" class="loading-indicator visually-hidden" id="loadingIndicator">-->
       </form>
     </div>
-    <div>
-      <button id="play">Play sound</button>
-    </div>
+
+
+    <audio controls>
+      <source type="audio/wav">
+    Your browser does not support the audio element.
+    </audio>
+
     <!--Audio area
     <div id="audio-area">
       <audio

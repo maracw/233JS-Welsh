@@ -5,6 +5,9 @@ const regeneratorRuntime = require("regenerator-runtime");
 class AddWord{
     constructor(){
         //class variables
+        //need api key and url
+        //need a state object like in weather app
+
 
         //ui elements
         this.iconChoiceElement=document.getElementById("display-choices");
@@ -17,14 +20,15 @@ class AddWord{
     //onform change or indiv buttons
     /*submit should add the final*/
 
-    //method to fetch translation
+    //method to fetch translation?
     /*should it disable the welsh input button?*/
 
     //method to fetch icon
+    GetIconChoices(){
 
-    //method to fetch picture
+    }
 
-    //disply default image in flexbox for testing
+    //disply downloaded default image in flexbox for testing
     TestIConDisplay(){
     let attribution='<a href="https://thenounproject.com/browse/icons/term/cat/" target="_blank" title="Cat Icons">Noun Project</a>';
     let imagePath ="Assets/images/noun-cat-5328621.png";
