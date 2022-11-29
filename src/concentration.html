@@ -1,0 +1,130 @@
+
+Skip to content
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+@maracw
+LCC-CIT-Programming-CS233JS /
+01_concentration-maracw
+Private
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+01_concentration-maracw/indexStart.html
+@maracw
+maracw finished lab2
+Latest commit ffe3500 Oct 16, 2022
+History
+2 contributors
+@maracw
+@github-classroom
+98 lines (91 sloc) 4.84 KB
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS 233JS Concentration</title>
+</head>
+
+<body>
+    <div class="p-5 bg-secondary text-white text-center">
+        <h1>Mara Williams Lab 2</h1>
+        <p>Fall 2022 CS 233JS</p> 
+      </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Stopwatch</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/LCC-CIT-Programming-CS233JS/01_stopwatch-maracw/tree/lab2">GitHub Repo</a></li>
+                      <li><a class="dropdown-item" href="../01_stopwatch-maracw/indexV2.html">Webpage</a></li>
+                    </ul>
+                  </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Concentration</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/LCC-CIT-Programming-CS233JS/01_concentration-maracw/tree/lab2">GitHub Repo</a></li>
+                      <li><a class="dropdown-item" href="../01_concentration-maracw/indexStart.html">Webpage</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">TicTacToe</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/LCC-CIT-Programming-CS233JS/01_ttt-maracw/tree/lab2">GitHub Repo</a></li>
+                      <li><a class="dropdown-item" href="../01_ttt-maracw/indexStart.html">Webpage</a></li>
+                    </ul>
+                  </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container pt-5">
+
+        <div class="container" id="board">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10 mx-auto text-center border border-3 text-bg-info"><h4 id="status">Matches: 0</h4></div>
+              <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div id="0" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="1" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="2" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="3" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="4" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div id="5" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="6" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="7" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="8" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="9" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div id="10" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="11" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="12" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="13" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="14" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div id="15" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="16" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="17" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="18" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div id="19" name="card" class="col-sm-2 card">&nbsp;</div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div><!-- /.board -->
+        <dialog id="win">You Win! WOO!<br>
+        Refresh to Play Again</dialog>
+    </div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="stylesStart.css">
+    <script src="src/indexStartV2.js"></script>
+</body>
+
+</html>

@@ -7,7 +7,7 @@
     <h1>Make a Vocab Card</h1>
 <div class="container">
     <div class="row">
-        <div class="p-3 bg-secondary form col-sm-8" id="add-word">  
+        <form class="p-3 bg-secondary form col-sm-8" id="add-word">  
             <!---form - 1st choose dropdown
             next  input english word - button to find translation - will add it to welsh input box
             next either input or search for choose/look up word to add
@@ -22,24 +22,32 @@
                     <label>Enter Welsh word: </label>
                     <input type="text" id="welsh" class="form-control" placeholder=""><br>
                 </div>
-                <div class="form-area">
-                    <p>Choose an image to put on the card</p>
-                    <button class="btn btn-primary" id="fetch-icon">Search for Icon from the Noun Project</button>
-                    <button class="btn btn-primary" id="fetch-photo">Search for Photo from Pexels.com</button>
-                    <button class="btn btn-primary" id="no-image">Don't use an image</button>
-                    <p>Click the image to use on card</p>
-                    <!--this block becomes visible when the fetch returns-->
-                    <div id="display-choices" class="d-inline-flex flex-wrap p-3 bg-secondary text-white">
-                            <div id="result-img1" name="icon-choice" style="width: 200px; height: 200px;" class="p-2 bg-info">
-                                <img src="Assets/images/noun-cat-5328621.png" style="width: 200px; height: 200px;"> item 1</div>
-                            <div id="result-img2" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 2</div>
-                            <div id="result-img3" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 3</div>
-                            <div id="result-img4" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 4</div>
-                            <div id="result-img5" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 5</div>
-                            <div id="result-img6" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 6</div>
-                    </div>
-                </div>
+            </form>
         </div>
+        <form>
+            Add an Icon from the Noun Project to your Card
+            <div class="input-group">
+                <label>
+                    Keyword Search:
+                </label>
+               <input type="text"></inpt>
+               <button class="btn btn-success" type="submit" id="fetch-icon">Search</button>
+            </div>
+            <p>Choose an image to put on the card</p>
+            <button class="btn btn-primary" id="fetch-icon">Search for Icon from the Noun Project</button>
+
+            <p>Click the image to use on card</p>
+            <!--this block becomes visible when the fetch returns-->
+            <div id="display-choices" class="d-inline-flex flex-wrap p-3 bg-secondary text-white">
+                    <div id="result-img1" name="icon-choice" style="width: 200px; height: 200px;" class="p-2 bg-info">
+                        <img src="Assets/images/noun-cat-5328621.png" style="width: 200px; height: 200px;"> item 1</div>
+                    <div id="result-img2" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 2</div>
+                    <div id="result-img3" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 3</div>
+                    <div id="result-img4" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 4</div>
+                    <div id="result-img5" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 5</div>
+                    <div id="result-img6" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 6</div>
+            </div>
+        </form>
         <div class="p-3 bg-dark text-white col-sm-4" id ="preview-area">
                 <div class="card">
                     <div class="card-body">
