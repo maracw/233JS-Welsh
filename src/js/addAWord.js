@@ -1,6 +1,7 @@
 //as in lab 6
 import './general';
 const regeneratorRuntime = require("regenerator-runtime");
+import getNavBar from './navbar'; 
 
 class AddWord{
     constructor(){
@@ -53,6 +54,6 @@ class AddWord{
     /*how do I have a simple way to make lists and words available on different pages
     or - playing the game and adding can be on one monstrous page */
 }
-
+getNavBar("AddAWord");
 
 window.onload = ()=>{let newAddWord = new AddWord();};

@@ -23,6 +23,7 @@ module.exports = {
     mode: !isProduction ? 'development': 'production',
     entry: {
       home: './src/js/home.js',
+      about:'./src/js/about.js',
       audio: './src/js/audio.js',
       addAWord: './src/js/addAWord.js', 
       concentration: './src/js/concentration.js'
@@ -80,6 +81,12 @@ module.exports = {
         chunks: ["home"],
         inject: "body",
         filename: "index.html",
+      }),
+      new htmlWebpackPlugin({
+        template: path.resolve(__dirname, "./src/about.html"),
+        chunks: ["home"],
+        inject: "about",
+        filename: "about.html",
       }),
       new htmlWebpackPlugin({
         template: path.resolve(__dirname, "./src/audio.html"),

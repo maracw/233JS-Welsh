@@ -4,10 +4,12 @@ export default function getNavBar(activePage){
     let activeConcentration="";
     let activeAddAWord="";
     let activeAudio ="";
+    let activeAbout="";
     let linkHome="./";
     let linkAudio="./audio.html";
     let linkConcentration="./concentration.html";
     let linkAddAWord="./addAWord.html";
+    let linkAbout="./about.html";
 
     
     if(activePage=="AddAWord")
@@ -19,6 +21,10 @@ export default function getNavBar(activePage){
         activeConcentration="active";
         linkConcentration="#";
     }
+    else if(activePage=="About"){
+      activeAbout="active";
+      linkAbout="#";
+  }
     else if(activePage=="Audio"){
         activeAudio="active";
         linkAudio="#";
@@ -32,7 +38,7 @@ export default function getNavBar(activePage){
     welshNavBar=`<nav class="navbar navbar-expand-sm color3">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"> 
-        <img src="Assets/images/welsh-dragon.jpg" alt="Logo" style="width: 100px;" class="rounded-pill m-3">  
+        <img src="Assets/images/welsh-dragon.png" alt="Logo" style="width: 100px;" class="rounded-pill m-3">  
     </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -42,6 +48,9 @@ export default function getNavBar(activePage){
           <li class="nav-item">
             <a class="nav-link custom-nav-text" href="${linkHome}">Home</a>
           </li>
+          <li class="nav-item">
+          <a class="nav-link custom-nav-text" href="${linkAbout}">About</a>
+        </li>
           <li class="nav-item">
             <a class="nav-link custom-nav-text" href="${linkAudio}">Audio</a>
           </li>
