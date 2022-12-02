@@ -22,6 +22,7 @@ class TextToSpeech{
         //this.TextToConvert="",
         //this.WelshText = "",
         //this.WelshAudio="Assets/demo.wav",
+        
 
         //name elements on page
         this.audioElement = document.getElementById("audio-area");
@@ -29,7 +30,7 @@ class TextToSpeech{
         this.inputElement =document.getElementById("input-text");
         
         //bind methods
-
+        this.addSource=this.addSource.bind(this);
         //assign event handlers
         this.submitElement.onclick=this.OnFormSubmit.bind(this);
     ;
