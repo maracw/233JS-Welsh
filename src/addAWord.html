@@ -54,9 +54,24 @@
             </div>
         </form>
         <div class="p-3 bg-dark text-white col-sm-4" id ="preview-area">
+            <div class="form-group">
+                <label for="topText">Top Text:</label>
+                <input type="text" id="topText" class="form-control" value="">
+              </div>
+        
+              <div class="form-group">
+                <label for="bottomText">Bottom Text:</label>
+                <input type="text" id="bottomText" class="form-control" value="">
+              </div>
+              <a class="btn btn-primary download-button" id="downloadMeme" href="" download="meme.png">Download the canvas</a>        
                 <div class="card">
                     <div class="card-body">
                         <p>Preview</p>
+                        <div class="canvas-area">
+                            <canvas id="imgCanvas" class="img-canvas">
+                              Canvas Not supported in your browser... Sorry!
+                            </canvas>
+                          </div>                      
                     </div>
                     <div class="card-footer">
                         <button type="submit">Add card to list</button>
