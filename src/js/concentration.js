@@ -1,3 +1,8 @@
+//import
+import './general';
+const regeneratorRuntime = require("regenerator-runtime");
+import getNavBar from './navbar';
+
 // Create a class called Concentration.
 class Concentration {
     /*
@@ -36,6 +41,7 @@ class Concentration {
         this.showMatches();
         this.enableAllCards();
         this.showAllBacks();
+        getNavBar("Concentration");
     }
     //enable local storage to let you add a card on place and use it elsewhere?
 
@@ -181,6 +187,8 @@ class Concentration {
         */
 
 }
+
+
 
 let concentration;
 window.onload = () => {

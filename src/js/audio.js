@@ -5,6 +5,7 @@ but i liked the short names in webpack.config for our lab 6*/
 //as in lab 6
 import './general';
 const regeneratorRuntime = require("regenerator-runtime");
+import getNavBar from './navbar'; 
 
 const apiName =' Coqui Speech Server API';
 const api_Key = '81771ec0-a119-4c09-a5ba-594daa068e3f';
@@ -61,10 +62,11 @@ class TextToSpeech{
     }
     //make the api call and get response back
     //put respnse wav file into the page
+    
 }
 //outside the class
 //make an instance
-
+getNavBar("Audio");
 let newTextToSpeech;
 window.onload=() =>{
     newTextToSpeech= new TextToSpeech();

@@ -3,9 +3,12 @@ export default function getNavBar(activePage){
     let activeHome ="";
     let activeConcentration="";
     let activeAddAWord="";
+    let activeAudio ="";
     let linkHome="./";
-    let linkConcentration="./about.html";
-    let linkAddAWord="./status.html";
+    let linkAudio="./audio.html";
+    let linkConcentration="./concentration.html";
+    let linkAddAWord="./addAWord.html";
+
     
     if(activePage=="AddAWord")
     {
@@ -16,6 +19,10 @@ export default function getNavBar(activePage){
         activeConcentration="active";
         linkConcentration="#";
     }
+    else if(activePage=="Audio"){
+        activeAudio="active";
+        linkAudio="#";
+    }
     else{
         activeHome="active";
         linkHome="#";
@@ -25,7 +32,7 @@ export default function getNavBar(activePage){
     welshNavBar=`<nav class="navbar navbar-expand-sm color3">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"> 
-        <img src="Assets/images/welsh-dragon.png" alt="Logo" style="width: 100px;" class="rounded-pill m-3">  
+        <img src="Assets/images/welsh-dragon.jpg" alt="Logo" style="width: 100px;" class="rounded-pill m-3">  
     </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -33,45 +40,27 @@ export default function getNavBar(activePage){
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link custom-nav-text" href="#">Home</a>
+            <a class="nav-link custom-nav-text" href="${linkHome}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link custom-nav-text" href="#">About</a>
+            <a class="nav-link custom-nav-text" href="${linkAudio}">Audio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link custom-nav-text" href="#">Add a Vocab Word</a>
+            <a class="nav-link custom-nav-text" href="${linkAddAWord}">Add a Vocab Word</a>
           </li>  
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle custom-nav-text" href="#" role="button" data-bs-toggle="dropdown">Play Games</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Concentration</a></li>
+              <li><a class="dropdown-item" href="${linkConcentration}">Concentration</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link custom-nav-text" href="#">Admin</a>
-          </li> 
         </ul>
       </div>
-      <span class="justify-content-end m-3 custom-title">Brewery Name</span>
+      <span class="justify-content-end m-3 custom-title">233 JS Final</span>
     </div>
-</nav>`
-    let customBar = "";
-    customBar=`<div class="container-fluid">
-    <ul class="navbar-nav">
-      <li class="navbar-brand">Event Application</li>
-      <li class="nav-item">
-        <a class="nav-link ${activeHome}" href="${linkHome}" id="home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link ${activeConcentration}" href="${linkConcentration}" id="Status">Status</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link ${activeAddAWord}" href="${linkAddAWor}" id="About">About</a>
-      </li>
-    </ul>
-    </div>`
-    
-    document.getElementById("navbar").innerHTML = customBar;
+</nav>`;
+
+    document.getElementById("navbar").innerHTML = welshNavBar;
     }
 
     

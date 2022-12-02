@@ -3,7 +3,8 @@
 <head>
 
 </head>
-<body>
+<body class="container">
+  <div id="navbar"></div>
 
   <h1>Croeso! Welcome</h1>
   
@@ -11,23 +12,7 @@
   <p>Mara Williams Lane Community College Fall 2022 CS233JS Final project</p>
   <p>This site is coming soon. This site will help Welsh learners practice vocabulary.</p>
   
-  <p>testing this</p>
-		
-    <audio controls>
-    <source type="audio/wav">
-  Your browser does not support the audio element.
-  </audio>
-  <script>
-    function addSource(){
-    let audioElement=document.querySelector("audio");
-    const call='https://tts.techiaith.cymru/coqui-tts/api/v1?testun=Dw%20i%20canu&siaradwr=&api_key=6ec83e1b-9879-4bc8-b28a-134fa218a5ed';
-    const string=`
-    <source src=${call} type="audio/wav">
-  Your browser does not support the audio element.`;
-    audioElement.innerHTML = string;
-}
-window.onload(addSource());
-  </script>
+
 </body>
 </html>
 </body>

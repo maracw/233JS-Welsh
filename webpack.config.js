@@ -24,7 +24,9 @@ module.exports = {
     entry: {
       home: './src/js/home.js',
       audio: './src/js/audio.js',
-      addAWord: './src/js/addAWord.js'
+      addAWord: './src/js/addAWord.js', 
+      concentration: './src/js/concentration.js'
+
     },
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -90,6 +92,12 @@ module.exports = {
         chunks: ["addAWord"],
         inject: "body",
         filename: "addAWord.html",
+      }),
+      new htmlWebpackPlugin({
+        template: path.resolve(__dirname, "./src/concentration.html"),
+        chunks: ["concentration"],
+        inject: "body",
+        filename: "concentration.html",
       }),
 
       new copyPlugin({
