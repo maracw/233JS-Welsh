@@ -6,32 +6,53 @@ import getNavBar from './navbar';
 class AddWord{
     constructor(){
         //class variables
+        this.state={
+            photos:[]
+            //place to store info from api call
+        };
         //need api key and url
         //need a state object like in weather app
-
+        this.pexelsUrl=
 
         //ui elements
         this.iconChoiceElement=document.getElementById("display-choices");
         this.downloadBtn=document.getElementById("download-btn");
         this.iconUrlElement=document.getElementById("icon-download-url");
+        this.pexelsBtn=document.getElementById("fetch-pexels");
+        this.pexelsSearch=document.getElementById("pexels-search");
         //bind methods to class
         this.TestIConDisplay=this.TestIConDisplay.bind(this);
         this.DownloadIcon=this.DownloadIcon.bind(this);
         //add methods to ui elements
         this.downloadBtn.onclick=this.DownloadIcon.bind(this);
+        this.pexelsBtn.onclick=this.GetOnePexels.bind(this);
         this.TestIConDisplay();
         
     }
     //onform change or indiv buttons
     /*submit should add the final*/
 
-    //method to fetch translation?
-    /*should it disable the welsh input button?*/
 
     //method to fetch icon
-    GetIconChoices(){
-
-    }
+    GetOnePexels(event){
+        event.preventDefault();
+        let search=this.pexelsSearch.value;
+        let searchEncoded=encodeURIComponent(search);           
+        fetch(`https://api.pexels.com/v1/search?query=${searchEncoded}&size='small'&per_page=1`, {
+            headers: {
+                'Authorization': '563492ad6f91700001000001d4be53950c3d4ace99ac5c52efdf1558'
+            }
+        })
+        .then(result=>result.json())
+        .then (photodata=>{
+            //do things
+            this.state.photos=photodata.photos;
+            console.log(this.state.photos[0].photographer);
+            //place pic
+            document.getElementById("fetch-img").src=this.state.photos[0].src.small;
+        });
+        }
+    
 
     //disply downloaded default image in flexbox for testing
     TestIConDisplay(){
