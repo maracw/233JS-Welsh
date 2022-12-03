@@ -9,7 +9,7 @@ class AddWord{
         //need api key and url
         //need a state object like in weather app
 
-        this.image="Assets/images/welsh-dragon,png";
+        this.image=document.querySelector("#for-canvas");
         //ui elements
         this.iconChoiceElement=document.getElementById("display-choices");
         this.downloadBtn=document.getElementById("download-btn");
@@ -24,11 +24,15 @@ class AddWord{
         
         this.TestIConDisplay=this.TestIConDisplay.bind(this);
         this.DownloadIcon=this.DownloadIcon.bind(this);
+        this.createCanvas=this.createCanvas.bind(this);
+        this.createImageForCard=this.createImageForCard.bind(this);
+        
         //add methods to ui elements
         this.downloadBtn.onclick=this.DownloadIcon.bind(this);
         //call methods
         this.TestIConDisplay();
         this.createCanvas();
+        this.createImageForCard();
     }
     //onform change or indiv buttons
     /*submit should add the final*/
@@ -52,12 +56,10 @@ class AddWord{
         //draw image
         this.$canvas.height = this.image.height;
         this.$canvas.width = this.image.width;
-        this.resizeCanvas(this.$canvas.height, this.$canvas.width);
-        this.$canvas.height = this.image.height;
-        this.$canvas.width = this.image.width;
 
         this.$context.drawImage(this.image, 0, 0);
     }
+   
     //disply downloaded default image in flexbox for testing
     TestIConDisplay(){
     let attribution='<a href="https://thenounproject.com/browse/icons/term/cat/" target="_blank" title="Cat Icons">Noun Project</a>';
