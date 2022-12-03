@@ -7,7 +7,8 @@ class AddWord{
     constructor(){
         //class variables
         this.state={
-            photos:[]
+            photos:[],
+            htmlText:""
             //place to store info from api call
         };
         //need api key and url
@@ -25,6 +26,8 @@ class AddWord{
         
         this.DownloadIcon=this.DownloadIcon.bind(this);
         this.enableAllCards=this.enableAllCards.bind(this);
+        this.GenerateOneCard=this.GenerateOneCard.bind(this);
+        this.DisplayPexels6=this.DisplayPexels6.bind(this);
         //add methods to ui elements
         this.downloadBtn.onclick=this.DownloadIcon.bind(this);
         this.pexelsBtn.onclick=this.GetOnePexels.bind(this);
@@ -59,7 +62,7 @@ class AddWord{
         GetSixPexels(event){
             event.preventDefault();
             let search=this.pexelsSearch.value;
-            let searchEncoded=encodeURIComponent(search);           
+            let searchEncoded=search;           
             fetch(`https://api.pexels.com/v1/search?query=${searchEncoded}&orientation='square'&size='small'&per_page=6`, {
                 headers: {
                     'Authorization': '563492ad6f91700001000001d4be53950c3d4ace99ac5c52efdf1558'
@@ -71,32 +74,32 @@ class AddWord{
                 this.state.photos=photodata.photos;
                 console.log(this.state.photos);
                 //place pic
-                document.getElementById("fetch-img").src=this.state.photos[5].src.small;
+                document.getElementById("fetch-img").src=this.state.photos[0].src.small;
             });
             this.DisplayPexels6();
         }
         //method to display 6 choices
         DisplayPexels6(){
-            let htmlText="";
-            let idCount=0;
-            //this doesn't seem to work without the timeout?
-            this.state.photos.forEach(element => {
-                idCount++;
-                let attribution=element.photographer;
-                console.log(attribution);
-                let imagePath=element.src.small;
-                let alt=element.alt;
-                htmlText+=`
-                <div style="width: 175; height: 175;" class="p-2 bg-info">
-                <img name="icon-choice" id="result-img${idCount}" src="${imagePath}" alt="${alt}" style="width: 200px; height: 200px;">
-                <br> 
-                ${attribution}</div>`;
-                setTimeout(1500);
-            });
-            document.getElementById("display-choices").innerHTML=htmlText;
+            //this doesn't seem to work without the timeout?    
+            this.innerHTML="";     
+            for(let i=0; i<this.state.photos.length; i++)
+            {
+                setTimeout(this.GenerateOneCard(i),1000);
+            }
+            document.getElementById("display-choices").innerHTML=this.state.htmlText;
             this.enableAllCards();
         }
-
+        GenerateOneCard(index){
+            console.log("going!");
+            let attribution=this.state.photos[index].photographer;
+            let imagePath=this.state.photos[index].src.small;
+            let alt=this.state.photos[index].alt;
+            this.state.htmlText+=`
+            <div style="width: 175; height: 175;" class="p-2 bg-info">
+            <img name="icon-choice" id="result-img${index}" src="${imagePath}" alt="${alt}" style="width: 200px; height: 200px;">
+            <br> 
+            ${attribution}</div>`;
+        }
         //user clicks on card
         //works like handleClick
         ChosePhotoForCard(index){
@@ -106,7 +109,7 @@ class AddWord{
         }
         handleClick(index) {
             console.log(index);
-            let id="result-img"+(index+1);
+            let id="result-img"+(index);
             let cardImage=document.getElementById(id).src;
             document.getElementById("fetch-img").src=cardImage;
         }
