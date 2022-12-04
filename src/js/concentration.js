@@ -19,7 +19,9 @@ class Concentration {
     */
     constructor() {
         this.imagePath = '/Assets/images/';
+        //holds the object values
         this.vocabCards=Array(20).fill(null);
+        //holds the html string
         this.images = Array(20).fill(null);
         this.firstPick = -1;
         this.secondPick = -1;
@@ -27,7 +29,9 @@ class Concentration {
         this.tries = 0;
         this.gameWon = false;
 
-        this.fillCardImages=this.fillCardImages.bind(this);
+        this.fillCardImages=this.fillCardObjects.bind(this);
+        this.createCardHtml=this.createCardHtml.bind(this);
+        this.testCardFronts=this.testCardFronts.bind(this);
 
         this.showMatches = this.showMatches.bind(this);
         this.enableAllRemainingCards = this.enableAllCards.bind(this);
@@ -41,10 +45,12 @@ class Concentration {
     }
     init() {
         this.fillCardObjects();
-        this.shuffleImages();
-        this.showMatches();
-        this.enableAllCards();
-        this.showAllBacks();
+        this.createCardHtml();
+        this.testCardFronts();
+        //this.shuffleImages();
+        //this.showMatches();
+        //this.enableAllCards();
+        //this.showAllBacks();
         getNavBar("Concentration");
     }
     //enable local storage to let you add a card on place and use it elsewhere?
@@ -61,10 +67,10 @@ class Concentration {
         {
             this.vocabCards[i]={
                 category: "farm animals",
-                english: this.vocabCards[i].english,
-                singular: this.vocabCards[i].singular,
-                plural: this.vocabCards[i].plural,
-                vocabImg: this.imagePath+this.vocabCards[i].engPlural+".jpg"
+                english: english[1],
+                singular: singular[i],
+                plural: plural[i],
+                vocabImg: this.imagePath + engPlural[i]+".jpg"
             }
         }
         
@@ -81,7 +87,7 @@ class Concentration {
                 <div class="card-body">
                     <h5 class="card-title">${card.singular}</h5>
                 </div> 
-            </div> `
+            </div> `;
             }
             else{
                 this.images[i]=`                    
@@ -90,10 +96,19 @@ class Concentration {
                 <div class="card-body">
                     <h5 class="card-title">${card.singular}</h5>
                 </div> 
-            </div> `
-            }                   
+            </div> `;
+            }                 
         }
     }
+    //no shuffling just insert the html
+    testCardFronts(){
+        for (let i=0; i<this.cards.length; i++)
+        {
+            let cardImage = this.images[i];
+            document.getElementById(i).innerHTML =cardImage;
+        };
+    }
+
     shuffleImages() {
         for (let i = 0; i < this.length; i++) {
             let randomNum = Math.floor(Math.random() * this.images.length);
