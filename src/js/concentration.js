@@ -31,9 +31,10 @@ class Concentration {
 
         this.fillCardImages=this.fillCardObjects.bind(this);
         this.createCardHtml=this.createCardHtml.bind(this);
-        this.testCardFronts=this.testCardFronts.bind(this);
+        this.buildCardFronts=this.buildCardFronts.bind(this);
         this.showBack=this.showBack.bind(this);
         this.showFront=this.showFront.bind(this);
+        this.showAllFronts=this.showAllFronts(this);
 
         this.showMatches = this.showMatches.bind(this);
         this.enableAllRemainingCards = this.enableAllCards.bind(this);
@@ -48,11 +49,12 @@ class Concentration {
     init() {
         this.fillCardObjects();
         this.createCardHtml();
-        this.testCardFronts();
+        this.buildCardFronts();
         this.shuffleImages();
+        this.showAllFronts();
         this.showMatches();
         this.enableAllCards();
-        this.showAllBacks();
+        //this.showAllBacks();
         getNavBar("Concentration");
     }
     //enable local storage to let you add a card on place and use it elsewhere?
@@ -115,7 +117,7 @@ class Concentration {
         }
     }
     //no shuffling just insert the html
-    testCardFronts(){
+    buildCardFronts(){
         for (let i=0; i<this.cards.length; i++)
         {
             let cardImage = this.images[i];
@@ -125,11 +127,24 @@ class Concentration {
 
     shuffleImages() {
         for (let i = 0; i < this.images.length; i++) {
+
             let randomNum = Math.floor(Math.random() * this.images.length);
-            //let temp = images[i];
-            //this.images[i] = this.images[randomNum];
-            //this.images[randomNum] = temp;
+            let checkValueI=(i>9)? true: false;
+            let checkValueR=(randomNum>9)? true: false;
+            let cardValueI=i;
+            let cardValueR=randomNum;
+            if(checkValueI)
+            {
+                cardValueI-=10;
+            }
+            if(checkValueR){
+                cardValueR-=10;
+            }
+            //switch html array
             [this.images[i], this.images[randomNum]] = [this.images[randomNum], this.images[i], ]
+            //switch cardvalues array
+            //html should be a part of card values..
+            [this.vocabCards[cardValueI], this.vocabCards[cardValueR]] = [this.vocabCards[cardValueR], this.vocabCards[cardValueI], ]
             //array on the fly that swaps the positions?
         }
     }
@@ -143,7 +158,11 @@ class Concentration {
         document.getElementById(insideId).classList.remove("visually-hidden");
         this.cards[index].classList.remove("custom-card-back");
     }
-
+    showAllFronts() {
+        for (let i = 0; i < this.cards.length; i++) {
+            this.showFront(i);
+        }
+    }
     showAllBacks() {
         for (let i = 0; i < this.cards.length; i++) {
             this.showBack(i);
