@@ -49,9 +49,8 @@ class Concentration {
         this.fillCardObjects();
         this.createCardHtml();
         this.testCardFronts();
-        //this.shuffleImages();
-        //this.testCardFronts();
-        //this.showMatches();
+        this.shuffleImages();
+        this.showMatches();
         this.enableAllCards();
         this.showAllBacks();
         getNavBar("Concentration");
@@ -172,17 +171,13 @@ class Concentration {
         //show front
         this.showFront(index);
         this.disableCard(index);
-        /*
-;
-        this.disableCard(index);
-
         if (this.firstPick == -1) {
             this.firstPick = index;
         } else {
             this.secondPick = index;
             this.disableAllCards();
             setTimeout(this.checkCards, 1500);
-        }*/
+        }
     }
     disableCard(index) {
         let card = document.getElementById(index);
@@ -213,23 +208,29 @@ class Concentration {
             this.showBack(this.secondPick);
             this.enableAllRemainingCards();
         }
-    
+
         this.showMatches();
         this.firstPick = -1;
         this.secondPick = -1;
         if (this.gameWon) {
             document.getElementById("win").showModal();
         }
-
     }
     isMatch() {
-        let firstImageName = this.images[this.firstPick];
-        let secondImageName = this.images[this.secondPick];
+        //check to see if the pick is greater than 9
+        let firstIndex=this.firstPick;
+        let secondIndex=this.secondPick;
+        if(this.firstPick>9){
+            firstIndex=firstIndex-10;
+        }
+        if(this.secondPick>9)
+        {
+            secondIndex=secondIndex-10;
+        }
+        let firstCardValues = this.vocabCards[this.firstIndex];
+        let secondCardValues = this.vocabCards[this.secondIndex];
     
-        let vFirstCard = firstImageName.substr(4, 1);
-        let vSecondCard = secondImageName.substr(4, 1);
-    
-        if (vFirstCard == vSecondCard)
+        if (firstCardValues == secondCardValues)
             return true;
         else
             return false;
@@ -240,22 +241,10 @@ class Concentration {
     }
     removeCard(index) {
         let card = document.getElementById(index);
-        card.style.backgroundImage = 'none';
+        this.showBack(index);
+        card.classList.remove("custom-card-red")
+        card.classList.add ('custom-card-disabled');
     }
-    /*
-            Convert each function to a method.  
-            -   Move it inside the class.
-            -   Remove the keyword function
-            -   Add this. in front of every variable and method
-            
-            THREE OF THE METHODS CHANGE A LITTLE
-            -   handleClick will now have a parameter, index
-                -   remove the declaration / assignment of the local var index
-            -   enableAllCards (and enableAllRemainingCards) have to pass the index to handleClick
-                -   the line of code that calls bind must now pass both this and an index
-                -   before: cards[i].onclick = this.handleClick.bind(this);
-                -   should be: cards[i].onclick = this.handleClick.bind(this, i);
-        */
 
 }
 

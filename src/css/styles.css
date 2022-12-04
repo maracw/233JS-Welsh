@@ -53,6 +53,13 @@ body {
   margin: 10px;
 }
 
+.custom-card-disabled{
+  height: 210px;
+  background-color: rgb(226, 209, 207);
+  border: 5px black solid;
+  margin: 10px;
+}
+
 td{
     text-align: center;
 }
