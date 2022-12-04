@@ -101,7 +101,7 @@ class Concentration {
                     }
                 else{
                         index=i+10;
-                        id+=index;
+                        id="inner"+index;
                         string=`                    
                             <div id="${id}" class="" >
                                 <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
