@@ -20,7 +20,7 @@ class Concentration {
     constructor() {
         this.imagePath = '/Assets/images/';
         //holds the object values
-        this.vocabCards=Array(20).fill(null);
+        this.vocabCards=Array(10).fill(null);
         //holds the html string
         this.images = Array(20).fill(null);
         this.firstPick = -1;
@@ -77,27 +77,37 @@ class Concentration {
     }
     //makes the template literal for displaying and stores it in the images array
     createCardHtml(){
-        for(let i=0; i<this.vocabCards.length; i++)
-        {
-            let card= this.vocabCards[i];
-            if(i<10){
-                this.images[i]=`                    
-            <div>
-                <img class="card-img-top img-fluid" src="${card.vocabImg}" alt="${card.engPlural}">
-                <div class="card-body">
-                    <h5 class="card-title">${card.singular}</h5>
-                </div> 
-            </div> `;
-            }
-            else{
-                this.images[i]=`                    
-            <div>
-                <img class="card-img-top img-fluid" src="${card.vocabImg}" alt="${card.engPlural}">
-                <div class="card-body">
-                    <h5 class="card-title">${card.singular}</h5>
-                </div> 
-            </div> `;
-            }                 
+            let cardValues= this.vocabCards[i];
+            let options=[1,2]
+            let string='';
+            let index=0;
+            for(let i=0; i<this.vocabCards.length; i++)
+            {
+                for(let j=0; j<options.length; j++)
+                    if(options[j]==1){
+                        string=`                    
+                        <div>
+                            <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
+                                <div class="card-body">
+                            <h5 class="card-title">${cardValues.plural}</h5>
+                        </div> 
+                        </div> `;
+                        index=i;
+                        this.images[index]=string;
+                        document.getElementById(index).innerHTML=this.images[index];   
+                    }
+                else{
+                        string=`                    
+                            <div>
+                                <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${cardValues.plural}</h5>
+                                </div> 
+                            </div> `;
+                        index=i+10;
+                        this.images[index]=string;
+                        document.getElementById(index).innerHTML=this.images[index];   
+                    }              
         }
     }
     //no shuffling just insert the html
