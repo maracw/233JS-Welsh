@@ -32,6 +32,7 @@ class Concentration {
         this.fillCardImages=this.fillCardObjects.bind(this);
         this.createCardHtml=this.createCardHtml.bind(this);
         this.testCardFronts=this.testCardFronts.bind(this);
+        this.showBack=this.showBack.bind(this);
 
         this.showMatches = this.showMatches.bind(this);
         this.enableAllRemainingCards = this.enableAllCards.bind(this);
@@ -48,9 +49,10 @@ class Concentration {
         this.createCardHtml();
         this.testCardFronts();
         //this.shuffleImages();
+        //this.testCardFronts();
         //this.showMatches();
         //this.enableAllCards();
-        //this.showAllBacks();
+        this.showAllBacks();
         getNavBar("Concentration");
     }
     //enable local storage to let you add a card on place and use it elsewhere?
@@ -83,10 +85,12 @@ class Concentration {
             for(let i=0; i<this.vocabCards.length; i++)
             {
                 let cardValues= this.vocabCards[i];
+                let id="inner";
                 for(let j=0; j<options.length; j++)
                     if(options[j]==1){
+                        id+=i;
                         string=`                    
-                        <div>
+                        <div id="${id}" class="">
                             <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
                                 <div class="card-body">
                             <h5 class="card-title">${cardValues.plural}</h5>
@@ -96,14 +100,16 @@ class Concentration {
                         this.images[index]=string;  
                     }
                 else{
+                        index=i+10;
+                        id+=index;
                         string=`                    
-                            <div>
+                            <div id="${id}" class="" >
                                 <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
                                 <div class="card-body">
                                     <h5 class="card-title">${cardValues.singular}</h5>
                                 </div> 
                             </div> `;
-                        index=i+10;
+                        
                         this.images[index]=string;  
                     }              
         }
@@ -118,7 +124,7 @@ class Concentration {
     }
 
     shuffleImages() {
-        for (let i = 0; i < this.length; i++) {
+        for (let i = 0; i < this.images.length; i++) {
             let randomNum = Math.floor(Math.random() * this.images.length);
             //let temp = images[i];
             //this.images[i] = this.images[randomNum];
@@ -128,9 +134,10 @@ class Concentration {
         }
     }
     showBack(index) {
+        let insideId="inner"+index;
         let backImage = this.imagePath + 'black_back.jpg';
-        let card = document.getElementById(index);
-        card.style.backgroundImage = 'url(' + backImage + ')';
+        document.getElementById(insideId).classList.add("visually-hidden");
+        this.cards[index].style.backgroundImage = 'url(' + backImage + ')';
     }
 
     showAllBacks() {
