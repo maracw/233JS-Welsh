@@ -33,6 +33,7 @@ class Concentration {
         this.createCardHtml=this.createCardHtml.bind(this);
         this.testCardFronts=this.testCardFronts.bind(this);
         this.showBack=this.showBack.bind(this);
+        this.showFront=this.showFront.bind(this);
 
         this.showMatches = this.showMatches.bind(this);
         this.enableAllRemainingCards = this.enableAllCards.bind(this);
@@ -51,7 +52,7 @@ class Concentration {
         //this.shuffleImages();
         //this.testCardFronts();
         //this.showMatches();
-        //this.enableAllCards();
+        this.enableAllCards();
         this.showAllBacks();
         getNavBar("Concentration");
     }
@@ -103,7 +104,7 @@ class Concentration {
                         index=i+10;
                         id="inner"+index;
                         string=`                    
-                            <div id="${id}" class="" >
+                            <div id="${id}" class="">
                                 <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
                                 <div class="card-body">
                                     <h5 class="card-title">${cardValues.singular}</h5>
@@ -135,9 +136,13 @@ class Concentration {
     }
     showBack(index) {
         let insideId="inner"+index;
-        let backImage = this.imagePath + 'black_back.jpg';
         document.getElementById(insideId).classList.add("visually-hidden");
-        this.cards[index].style.backgroundImage = 'url(' + backImage + ')';
+        this.cards[index].classList.add("custom-card-back");
+    }
+    showFront(index) {
+        let insideId="inner"+index;
+        document.getElementById(insideId).classList.remove("visually-hidden");
+        this.cards[index].classList.remove("custom-card-back");
     }
 
     showAllBacks() {
@@ -149,23 +154,26 @@ class Concentration {
     enableAllCards() {
         //watch out there is an onclick! bind!
         for (let i = 0; i < this.cards.length; i++) {
-            cards[i].onclick = this.handleClick.bind(this, i);
-            cards[i].style.cursor = 'pointer';
+            this.cards[i].onclick = this.handleClick.bind(this, i);
+            this.cards[i].style.cursor = 'pointer';
         }
     }
     enableAllRemainingCards() {
         for (let i = 0; i < this.cards.length; i++) {
-            if (cards[i].style.backgroundImage != "none") {
-                cards[i].onclick = this.handleClick.bind(this, i);
-                cards[i].style.cursor = 'pointer';
+            if (this.cards[i].style.backgroundImage != "none") {
+                this.cards[i].onclick = this.handleClick.bind(this, i);
+                this.cards[i].style.cursor = 'pointer';
             }
         }
 
 
     }
     handleClick(index) {
-        let cardImage = this.images[index];
-        document.getElementById(index).innerHTML =cardImage;
+        //show front
+        this.showFront(index);
+        this.disableCard(index);
+        /*
+;
         this.disableCard(index);
 
         if (this.firstPick == -1) {
@@ -174,7 +182,7 @@ class Concentration {
             this.secondPick = index;
             this.disableAllCards();
             setTimeout(this.checkCards, 1500);
-        }
+        }*/
     }
     disableCard(index) {
         let card = document.getElementById(index);

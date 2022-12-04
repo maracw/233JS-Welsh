@@ -46,7 +46,12 @@ body {
     font-size: 4.0em;
 
 }
-
+.custom-card-back{
+  height: 210px;
+  background-color: #791313;
+  border: 5px black solid;
+  margin: 10px;
+}
 
 td{
     text-align: center;
