@@ -18,13 +18,16 @@ class Concentration {
         -   All of the functionality of init will happen in the constructor ... call init.
     */
     constructor() {
-        this.imagePath = 'Cards/';
+        this.imagePath = '/Assets/images/';
+        this.vocabCards=Array(20).fill(null);
         this.images = Array(20).fill(null);
         this.firstPick = -1;
         this.secondPick = -1;
         this.matches = 0;
         this.tries = 0;
         this.gameWon = false;
+
+        this.fillCardImages=this.fillCardImages.bind(this);
 
         this.showMatches = this.showMatches.bind(this);
         this.enableAllRemainingCards = this.enableAllCards.bind(this);
@@ -33,10 +36,11 @@ class Concentration {
         this.disableAllCards = this.disableAllCards.bind(this);
         this.isMatch = this.isMatch.bind(this);
 
+        this.cards = document.getElementsByName("card");
         this.init();
     }
     init() {
-        this.fillImages();
+        this.fillCardObjects();
         this.shuffleImages();
         this.showMatches();
         this.enableAllCards();
@@ -45,21 +49,53 @@ class Concentration {
     }
     //enable local storage to let you add a card on place and use it elsewhere?
 
-    //change this
+    //was fillImages
     //build cards - could cards be a separate class?
-    fillImages() {
-        let values = ['a', 'k', 'q', 'j', 't', '9', '8', '7', '6', '5'];
-        let suits = ['h', 's'];
+    fillCardObjects() {
+        let english =['cat', 'dog', 'pig', 'horse', 'rabbit', 'goat','duck', 'cow', 'sheep', 'lamb'];
+        let engPlural =['cats', 'dogs', 'pigs', 'horses', 'rabbits', 'goats','ducks', 'cows', 'sheep', 'lambs' ];
+        let singular = ['cath', 'ci', 'mochyn', 'ceffyl', 'cwningen', 'gafr', 'hwyaden', 'buwch', 'defad', 'oen'];
+        let plural = ['cathod', 'cwn','moch', 'ceffylau', 'cwningod', 'geifr','hwyaid', 'buchod', 'defaid', 'wyn'];
         let index = 0;
-        for (let value = 0; value < values.length; value++) {
-            for (let suit = 0; suit < suits.length; suit++) {
-                this.images[index] = 'card' + values[value] + suits[suit] + '.jpg';
-                index++;
+        for (let i=0; i<10; i++)
+        {
+            this.vocabCards[i]={
+                category: "farm animals",
+                english: this.vocabCards[i].english,
+                singular: this.vocabCards[i].singular,
+                plural: this.vocabCards[i].plural,
+                vocabImg: this.imagePath+this.vocabCards[i].engPlural+".jpg"
             }
+        }
+        
+    }
+    //makes the template literal for displaying and stores it in the images array
+    createCardHtml(){
+        for(let i=0; i<this.vocabCards.length; i++)
+        {
+            let card= this.vocabCards[i];
+            if(i<10){
+                this.images[i]=`                    
+            <div>
+                <img class="card-img-top img-fluid" src="${card.vocabImg}" alt="${card.engPlural}">
+                <div class="card-body">
+                    <h5 class="card-title">${card.singular}</h5>
+                </div> 
+            </div> `
+            }
+            else{
+                this.images[i]=`                    
+            <div>
+                <img class="card-img-top img-fluid" src="${card.vocabImg}" alt="${card.engPlural}">
+                <div class="card-body">
+                    <h5 class="card-title">${card.singular}</h5>
+                </div> 
+            </div> `
+            }                   
         }
     }
     shuffleImages() {
-        for (let i = 0; i < this.images.length; i++) {
+        for (let i = 0; i < this.length; i++) {
             let randomNum = Math.floor(Math.random() * this.images.length);
             //let temp = images[i];
             //this.images[i] = this.images[randomNum];
@@ -75,23 +111,20 @@ class Concentration {
     }
 
     showAllBacks() {
-        let cards = document.getElementsByName("card");
-        for (let i = 0; i < cards.length; i++) {
+        for (let i = 0; i < this.cards.length; i++) {
             this.showBack(i);
         }
     }
 
     enableAllCards() {
         //watch out there is an onclick! bind!
-        let cards = document.getElementsByName("card");
-        for (let i = 0; i < cards.length; i++) {
+        for (let i = 0; i < this.cards.length; i++) {
             cards[i].onclick = this.handleClick.bind(this, i);
             cards[i].style.cursor = 'pointer';
         }
     }
     enableAllRemainingCards() {
-        let cards = document.getElementsByName("card");
-        for (let i = 0; i < cards.length; i++) {
+        for (let i = 0; i < this.cards.length; i++) {
             if (cards[i].style.backgroundImage != "none") {
                 cards[i].onclick = this.handleClick.bind(this, i);
                 cards[i].style.cursor = 'pointer';
@@ -101,8 +134,8 @@ class Concentration {
 
     }
     handleClick(index) {
-        let cardImage = this.imagePath + this.images[index];
-        document.getElementById(index).style.backgroundImage = 'url(' + cardImage + ')';
+        let cardImage = this.images[index];
+        document.getElementById(index).innerHTML =cardImage;
         this.disableCard(index);
 
         if (this.firstPick == -1) {
