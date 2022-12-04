@@ -77,12 +77,12 @@ class Concentration {
     }
     //makes the template literal for displaying and stores it in the images array
     createCardHtml(){
-            let cardValues= this.vocabCards[i];
             let options=[1,2]
             let string='';
             let index=0;
             for(let i=0; i<this.vocabCards.length; i++)
             {
+                let cardValues= this.vocabCards[i];
                 for(let j=0; j<options.length; j++)
                     if(options[j]==1){
                         string=`                    
@@ -93,20 +93,18 @@ class Concentration {
                         </div> 
                         </div> `;
                         index=i;
-                        this.images[index]=string;
-                        document.getElementById(index).innerHTML=this.images[index];   
+                        this.images[index]=string;  
                     }
                 else{
                         string=`                    
                             <div>
                                 <img class="card-img-top img-fluid" src="${cardValues.vocabImg}" alt="${cardValues.engPlural}">
                                 <div class="card-body">
-                                    <h5 class="card-title">${cardValues.plural}</h5>
+                                    <h5 class="card-title">${cardValues.singular}</h5>
                                 </div> 
                             </div> `;
                         index=i+10;
-                        this.images[index]=string;
-                        document.getElementById(index).innerHTML=this.images[index];   
+                        this.images[index]=string;  
                     }              
         }
     }
