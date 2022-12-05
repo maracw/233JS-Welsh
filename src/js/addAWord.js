@@ -19,7 +19,7 @@ class AddWord{
         //ui elements
         this.welshInput=document.getElementById("welsh");
         this.welshPluralInput=document.getElementById("welsh-plural");
-        this.englishInput=document.getElementById("english");
+        this.englishInput=document.getElementById("english-input");
 
         this.englishBtn=document.getElementById("english-submit");
         this.welshBtn=document.getElementById("welsh-submit");
@@ -31,23 +31,14 @@ class AddWord{
     
         //bind methods to class
         this.GenerateOneCard=this.GenerateOneCard.bind(this);
-        this.AddTextToCard=this.AddTextToCard.bind(this);
+        
 
         //add methods to ui elements
         this.pexelsBtn.onclick=this.GetOnePexels.bind(this);
-        this.englishBtn.addEventListener("click",this.AddTextToCard("english"));
-        this.welshBtn.addEventListener("click", this.AddTextToCard("welsh"));
-        this.pluralBtn.addEventListener("click"),this.AddTextToCard("welsh-plural");
+        this.englishBtn.onclick=this.AddEnglishToCard.bind(this);
+        this.welshBtn.onclick=this.AddWelshCard.bind(this);
+        this.pluralBtn.onclick=this.AddPluralToCard.bind(this);
        
-        
-        //extras not used
-        //this.DownloadIcon=this.DownloadIcon.bind(this);
-        //this.enableAllCards=this.enableAllCards.bind(this);
-        //this.DisplayPexels6=this.DisplayPexels6.bind(this);
-        //this.pexels6Btn.onclick=this.GetSixPexels.bind(this);
-        //this.iconChoiceElement=document.getElementById("display-choices");
-        //this.iconUrlElement=document.getElementById("icon-download-url");
-        //this.pexels6Btn=document.getElementById("fetch-6pexels");
         
     }
 
@@ -87,112 +78,28 @@ class AddWord{
             return oneHtmlText;
         }
 
-        AddTextToCard(event, btnName){
+        AddEnglishToCard(){
             event.preventDefault();
-            let text="";
-            let destination="";
-            switch(btnName){
-                case "english":
-                    {
-                        text=this.englishInput.value;
-                        destination=document.getElementById("english-card");
-                    }
-                case "welsh":
-                    {
-                        text=this.welshInput.value;
-                        destination=document.getElementById("welsh-card");
-                    }
-                case "welsh-plural":
-                    {
-                        text=this.welshPluralInput.value;
-                        destination=document.getElementById("welsh-card-pl");
-                    }
-            }
-            destination.innerHTML=text;
+            let text=document.getElementById("english-input").value;
+            document.getElementById("english-card").innerHTML=text;
         }
 
-         //works but fetch call doesn't time right
-        //method to fetch 6 photos
-        GetSixPexels(event){
+        AddWelshCard(){
             event.preventDefault();
-            let search=this.pexelsSearch.value;
-            let searchEncoded=search;           
-            fetch(`${PEXELS_URL}${searchEncoded}&orientation='square'&size='small'&per_page=3`, {
-                headers: {
-                    'Authorization': '563492ad6f91700001000001d4be53950c3d4ace99ac5c52efdf1558'
-                }
-            })
-            .then(result=>result.json())
-            .then (photodata=>{
-                //do things
-                this.state.photos=photodata.photos;
-                console.log(this.state.photos);
-                //place pic
-                document.getElementById("fetch-img").src=this.state.photos[0].src.small;
-            });
-            this.DisplayPexels6();
+            let text=document.getElementById("welsh-input").value;
+            document.getElementById("welsh-card").innerHTML=text;
         }
-        /*
-        //method to display 6 choices
-        //works but fetch call doesn't time right
-        DisplayPexels6(){
-            //this doesn't seem to work without the timeout?    
-            this.innerHTML="";     
-            for(let i=0; i<this.state.photos.length; i++)
-            {
-                setTimeout(this.GenerateOneCard(i),1000);
-            }
-            document.getElementById("display-choices").innerHTML=this.state.htmlText;
-            this.enableAllCards();
+ 
+        AddPluralToCard(){
+            event.preventDefault();
+            let text=document.getElementById("welsh-plural").value;
+            document.getElementById("welsh-card-pl").innerHTML=text;
         }
-        */
-       
-        //useful if user is picking from a selection of returned images
-        /*
-        //user clicks on card
-        //works like handleClick
-        ChosePhotoForCard(index){
-            let cardImage = this.state.photos[index].src.small;
-            let attribution=this.state.photos[index].attribution;
-            console.log(attribution);
-        }
-        handleClick(index) {
-            console.log(index);
-            let id="result-img"+(index);
-            let cardImage=document.getElementById(id).src;
-            document.getElementById("fetch-img").src=cardImage;
-        }
-        
-        //makes photos clickable
-        enableAllCards() {
-            //watch out there is an onclick! bind!
-            let cards = document.getElementsByName("icon-choice");
-            for (let i = 0; i < cards.length; i++) {
-                cards[i].onclick = this.handleClick.bind(this, i);
-                cards[i].style.cursor = 'pointer';
-            }
-        }
-
-    DownloadIcon(event){
-        event.preventDefault();
-        const url=this.iconUrlElement.value;
-        fetch(url)
-        .then(result=>result.json())
-        .then (result=>{
-            document.getElementById("fetch-img").src=result.message;
-        });
-        }
-        */
-    }
-
-
-    //method to preview card
-
     //method to add card to list
-
     //method to make lists
-
     //method to display success and ask for next step
+         
+    }
 
     /*how do I have a simple way to make lists and words available on different pages
     or - playing the game and adding can be on one monstrous page */
