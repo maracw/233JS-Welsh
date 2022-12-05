@@ -31,12 +31,12 @@ class AddWord{
     
         //bind methods to class
         this.GenerateOneCard=this.GenerateOneCard.bind(this);
-        
+        this.AddWelshToCard=this.AddWelshToCard.bind(this);
 
         //add methods to ui elements
         this.pexelsBtn.onclick=this.GetOnePexels.bind(this);
         this.englishBtn.onclick=this.AddEnglishToCard.bind(this);
-        this.welshBtn.onclick=this.AddWelshCard.bind(this);
+        this.welshBtn.onclick=this.AddWelshToCard.bind(this);
         this.pluralBtn.onclick=this.AddPluralToCard.bind(this);
        
         
@@ -84,9 +84,9 @@ class AddWord{
             document.getElementById("english-card").innerHTML=text;
         }
 
-        AddWelshCard(){
+        AddWelshToCard(){
             event.preventDefault();
-            let text=document.getElementById("welsh-input").value;
+            let text=document.getElementById("welsh").value;
             document.getElementById("welsh-card").innerHTML=text;
         }
  
