@@ -11,17 +11,19 @@
         <form class="p-3 bg-secondary form col-sm-8" id="add-word">  
                 <div class="input-group">
                     <label>Enter English word: </label>
-                    <input type="text" id="english" class="form-control" placeholder=""><br>
+                    <input type="text" id="english-input" class="form-control" placeholder=""><br>
+                    <button type="submit" id="english-submit" class="btn custom-btn">Add to Card</button>
                 </div>
                 <div class="input-group">
                     <label>Enter Welsh Singular Noun: </label>
                     <input type="text" id="welsh" class="form-control" placeholder=""><br>
+                    <button type="submit" id="welsh-submit" class="btn custom-btn">Add to Card</button>
                 </div>
                 <div class="input-group">
                     <label>Enter Welsh Plural Noun: </label>
                     <input type="text" id="welsh-plural" class="form-control" placeholder=""><br>
+                    <button type="submit" id="plural-submit" class="btn custom-btn">Add to Card</button>
                 </div>
-                <button type="submit" id="words-submit" class="btn custom-btn">Add to Card</button>
             </form>
         </div>
         <form>
@@ -59,14 +61,19 @@
         <div class="p-3 bg-dark text-white col-sm-4" id ="preview-area">
                 <div class="card">
                     <div class="card-body">
-                        <img class="card-img-top" style="width: 200px; height: 200px;" id="fetch-img">
+                        <div id="card-b1">
+                            <span id="welsh-card">Welsh</span> <span id="welsh-card-pl">Plural</span></br>
+                            <span id="english-card">English</span>
+                        </div>
+                        <div id="card-b2">
+                            <img class="card-img-top" style="width: 200px; height: 200px;" id="fetch-img">
+                        </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit">Add card to list</button>
+                        <button type="submit" class="btn custom-btn">Add card to list</button>
                     </div>
                 </div>
-                
-            </div></div>
+
       </div>
 
 </div> 

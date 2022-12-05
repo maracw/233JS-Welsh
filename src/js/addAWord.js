@@ -16,28 +16,38 @@ class AddWord{
 
         this.pexelsUrlEnd="&size='small'&per_page=1";
 
-        this.saveUrl="https://api.pexels.com/v1/search?query=";
-        this.saveKey="563492ad6f91700001000001d4be53950c3d4ace99ac5c52efdf1558";
-
         //ui elements
-        //this.iconChoiceElement=document.getElementById("display-choices");
-        //this.iconUrlElement=document.getElementById("icon-download-url");
+        this.welshInput=document.getElementById("welsh");
+        this.welshPluralInput=document.getElementById("welsh-plural");
+        this.englishInput=document.getElementById("english");
+
+        this.englishBtn=document.getElementById("english-submit");
+        this.welshBtn=document.getElementById("welsh-submit");
+        this.pluralBtn=document.getElementById("plural-submit");
+        //makes fetch
         this.pexelsBtn=document.getElementById("fetch-pexels");
-        //this.pexels6Btn=document.getElementById("fetch-6pexels");
         //gets keyword for query
         this.pexelsSearch=document.getElementById("pexels-search");
+    
         //bind methods to class
-        
-        //this.DownloadIcon=this.DownloadIcon.bind(this);
-        //this.enableAllCards=this.enableAllCards.bind(this);
         this.GenerateOneCard=this.GenerateOneCard.bind(this);
-        //this.DisplayPexels6=this.DisplayPexels6.bind(this);
+        this.AddTextToCard=this.AddTextToCard.bind(this);
 
         //add methods to ui elements
         this.pexelsBtn.onclick=this.GetOnePexels.bind(this);
+        this.englishBtn.addEventListener("click",this.AddTextToCard("english"));
+        this.welshBtn.addEventListener("click", this.AddTextToCard("welsh"));
+        this.pluralBtn.addEventListener("click"),this.AddTextToCard("welsh-plural");
+       
+        
+        //extras not used
+        //this.DownloadIcon=this.DownloadIcon.bind(this);
+        //this.enableAllCards=this.enableAllCards.bind(this);
+        //this.DisplayPexels6=this.DisplayPexels6.bind(this);
         //this.pexels6Btn.onclick=this.GetSixPexels.bind(this);
-        
-        
+        //this.iconChoiceElement=document.getElementById("display-choices");
+        //this.iconUrlElement=document.getElementById("icon-download-url");
+        //this.pexels6Btn=document.getElementById("fetch-6pexels");
         
     }
 
@@ -56,10 +66,51 @@ class AddWord{
             //do things
             this.state.photos=photodata.photos;
             console.log(this.state.photos[0].photographer);
+            document.getElementById("preview-area").innerHTML=this.GenerateOneCard(0);
             //place pic
-            document.getElementById("fetch-img").src=this.state.photos[0].src.small;
+            //document.getElementById("fetch-img").src=this.state.photos[0].src.small;
         });
         }
+
+        GenerateOneCard(index){
+            let attribution=this.state.photos[index].photographer;
+            let imagePath=this.state.photos[index].src.small;
+            let alt=this.state.photos[index].alt;
+            let oneHtmlText=`
+            <div style="width: 175; height: 175;" class="p-2 bg-info">
+            <img name="icon-choice" id="result-img${index}" src="${imagePath}" alt="${alt}" style="width: 200px; height: 200px;">
+            <div class="card-footer">
+                ${attribution} 
+                <button type="submit">Add card to list</button>
+                </div>
+            </div>`;
+            return oneHtmlText;
+        }
+
+        AddTextToCard(event, btnName){
+            event.preventDefault();
+            let text="";
+            let destination="";
+            switch(btnName){
+                case "english":
+                    {
+                        text=this.englishInput.value;
+                        destination=document.getElementById("english-card");
+                    }
+                case "welsh":
+                    {
+                        text=this.welshInput.value;
+                        destination=document.getElementById("welsh-card");
+                    }
+                case "welsh-plural":
+                    {
+                        text=this.welshPluralInput.value;
+                        destination=document.getElementById("welsh-card-pl");
+                    }
+            }
+            destination.innerHTML=text;
+        }
+
          //works but fetch call doesn't time right
         //method to fetch 6 photos
         GetSixPexels(event){
@@ -95,16 +146,7 @@ class AddWord{
             this.enableAllCards();
         }
         */
-        GenerateOneCard(index){
-            let attribution=this.state.photos[index].photographer;
-            let imagePath=this.state.photos[index].src.small;
-            let alt=this.state.photos[index].alt;
-            this.state.htmlText+=`
-            <div style="width: 175; height: 175;" class="p-2 bg-info">
-            <img name="icon-choice" id="result-img${index}" src="${imagePath}" alt="${alt}" style="width: 200px; height: 200px;">
-            <br> 
-            ${attribution}</div>`;
-        }
+       
         //useful if user is picking from a selection of returned images
         /*
         //user clicks on card
