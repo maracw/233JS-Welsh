@@ -32,7 +32,7 @@ class AddWord{
         //bind methods to class
         this.GenerateOneCard=this.GenerateOneCard.bind(this);
         this.AddWelshToCard=this.AddWelshToCard.bind(this);
-
+        this.FetchAudio=this.FetchAudio.bind(this);
         //add methods to ui elements
         this.pexelsBtn.onclick=this.GetOnePexels.bind(this);
         this.englishBtn.onclick=this.AddEnglishToCard.bind(this);
@@ -57,7 +57,7 @@ class AddWord{
             //do things
             this.state.photos=photodata.photos;
             console.log(this.state.photos[0].photographer);
-            document.getElementById("preview-area").innerHTML=this.GenerateOneCard(0);
+            document.getElementById("card-b2").innerHTML=this.GenerateOneCard(0);
             //place pic
             //document.getElementById("fetch-img").src=this.state.photos[0].src.small;
         });
@@ -88,6 +88,7 @@ class AddWord{
             event.preventDefault();
             let text=document.getElementById("welsh").value;
             document.getElementById("welsh-card").innerHTML=text;
+            this.FetchAudio();
         }
  
         AddPluralToCard(){
@@ -95,6 +96,19 @@ class AddWord{
             let text=document.getElementById("welsh-plural").value;
             document.getElementById("welsh-card-pl").innerHTML=text;
         }
+
+        FetchAudio(){
+            const input = document.getElementById("welsh").value;
+            //build the string
+            const inputForCall = encodeURIComponent(input);
+            let audioElement=document.getElementById("audio");
+            const call=`https://tts.techiaith.cymru/coqui-tts/api/v1?testun=${inputForCall}&siaradwr=&api_key=6ec83e1b-9879-4bc8-b28a-134fa218a5ed`;
+            const string=`
+                <source src=${call} type="audio/wav">
+                    Your browser does not support the audio element.`;
+            audioElement.innerHTML = string;
+        }
+        //m
     //method to add card to list
     //method to make lists
     //method to display success and ask for next step
