@@ -18,7 +18,7 @@ class Concentration {
         -   All of the functionality of init will happen in the constructor ... call init.
     */
     constructor() {
-        this.imagePath = '/Assets/images/';
+        this.imagePath = '/assets/images/';
         //holds the object values
         this.vocabCards=Array(10).fill(null);
         //holds the html string
