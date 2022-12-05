@@ -121,9 +121,9 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         SPEECH_URL: JSON.stringify(process.env.SPEECH_URL),
         SPEECH_KEY: JSON.stringify(process.env.SPEECH_KEY),
-        ICON_URL: JSON.stringify(process.env.ICON_URL),
-        ICON_KEY: JSON.stringify(process.env.ICON_KEY),
-        ICON_SECRET: JSON.stringify(process.env.ICON_SECRET)
+        PEXELS_URL: JSON.stringify(process.env.PEXELS_URL),
+        PEXELS_KEY: JSON.stringify(process.env.PEXELS_KEY)
+      
       }),
     ],
     /* separates js (and css) that is shared between bundles - allows browser to cache */

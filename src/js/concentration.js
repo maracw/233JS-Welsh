@@ -50,11 +50,11 @@ class Concentration {
         this.fillCardObjects();
         this.createCardHtml();
         this.buildCardFronts();
-        this.shuffleImages();
+        //this.shuffleImages();
         this.showAllFronts();
         this.showMatches();
         this.enableAllCards();
-        //this.showAllBacks();
+        this.showAllBacks();
         getNavBar("Concentration");
     }
     //enable local storage to let you add a card on place and use it elsewhere?

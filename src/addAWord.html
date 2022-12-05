@@ -9,50 +9,52 @@
 <div class="container">
     <div class="row">
         <form class="p-3 bg-secondary form col-sm-8" id="add-word">  
-            <!---form - 1st choose dropdown
-            next  input english word - button to find translation - will add it to welsh input box
-            next either input or search for choose/look up word to add
-             next search for icon or picture
-            --how to display? first n icons displayed in flex box?-->
                 <div class="input-group">
                     <label>Enter English word: </label>
                     <input type="text" id="english" class="form-control" placeholder=""><br>
-                    <button id="translate">Find Welsh Translation</button>
                 </div>
                 <div class="input-group">
-                    <label>Enter Welsh word: </label>
+                    <label>Enter Welsh Singular Noun: </label>
                     <input type="text" id="welsh" class="form-control" placeholder=""><br>
                 </div>
+                <div class="input-group">
+                    <label>Enter Welsh Plural Noun: </label>
+                    <input type="text" id="welsh-plural" class="form-control" placeholder=""><br>
+                </div>
+                <button type="submit" id="words-submit" class="btn custom-btn">Add to Card</button>
             </form>
         </div>
         <form>
-            Add an Icon from the Noun Project to your Card
+            <!--I would like to connect the top form and the bottom form, so that the user's english input is sent as the keyword request-->
             <div class="input-group">
                 <label>
-                    Keyword Search:
+                    Keyword Photo Search:
                 </label>
                <input id="pexels-search" type="text"></inpt>
-               <button class="btn btn-success" type="submit" id="fetch-pexels">Search</button>
-               <button class="btn btn-success" type="submit" id="fetch-6pexels">Search for 6</button>
+               <button class="btn custom-btn" type="submit" id="fetch-pexels">Search</button>
+               <!--
+                <button class="btn btn-success" type="submit" id="fetch-6pexels">Search for 6</button>
+               -->
+               
             </div>
-            <p>Choose an image to put on the card</p>
-           
-            
-            <input type="text" id="icon-download-url" value="">
-            <button id="download-btn">Download Icon</button>
-            
-            <button id="blob">blob</button>
+            <!--this section doesn't return fast enough - the request succeds, but my fetch call is written in a way that doesn't fully wait for it to finish-->
+            <!--similare to my issues in the schedule-brew ui implementation-->
+            <!--setting aside for now and having the user see one image-->
+            <!--
+            <p>Choose an image to put on the card</p>   
             <p>Click the image to use on card</p>
-            <!--this block becomes visible when the fetch returns-->
+    
             <div id="display-choices" class="d-inline-flex flex-wrap p-3 bg-secondary text-white">
-                    <div id="result-img1" name="icon-choice" style="width: 200px; height: 200px;" class="p-2 bg-info">
-                        <img src="Assets/images/noun-cat-5328621.png" style="width: 200px; height: 200px;"> item 1</div>
-                    <div id="result-img2" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 2</div>
-                    <div id="result-img3" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 3</div>
-                    <div id="result-img4" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 4</div>
-                    <div id="result-img5" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 5</div>
-                    <div id="result-img6" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 6</div>
-            </div>
+                <div id="result-img1" name="icon-choice" style="width: 200px; height: 200px;" class="p-2 bg-info">
+                    <img src="Assets/images/noun-cat-5328621.png" style="width: 200px; height: 200px;"> item 1</div>
+                <div id="result-img2" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 2</div>
+                <div id="result-img3" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 3</div>
+                <div id="result-img4" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 4</div>
+                <div id="result-img5" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 5</div>
+                <div id="result-img6" name="icon-choice" style="width: 200px" class="p-2 bg-info">Flex item 6</div>
+        </div>
+            -->
+            
         </form>
         <div class="p-3 bg-dark text-white col-sm-4" id ="preview-area">
                 <div class="card">
