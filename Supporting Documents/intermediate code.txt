@@ -1,0 +1,54 @@
+Intermediate code:
+
+    FillStylesArray(){
+        for(let i=0; i<this.state.recipes.length; i++)
+        {
+            let sId = this.state.recipes[i].styleId;
+            fetch(this.styleURL+'/id/'+sId)
+                .then(response => response.json())
+                .then(data => { 
+                 this.state.styles.push(data); 
+                })
+            .catch(error => {
+            alert('There was a problem getting the indiv style info!'); 
+        });
+        }
+    }
+
+
+    FindAllStyles(){
+        fetch(this.styleURL)
+        .then(response => response.json())
+        .then(data => { 
+            this.state.styles = data;
+        })
+        .catch(error => {
+          alert('There was a problem getting the styles info!'); 
+        });
+    }
+
+    FindRecipeById(rId, rObj){
+        fetch(this.recipeURL+'/id/'+rId)
+        .then(response => response.json())
+        .then(data => { 
+            rObj.push(data);
+            return rObj;
+        })
+        .catch(error => {
+          alert('There was a problem getting the indiv recipe info!'); 
+        });
+    }
+    FindAllBatches() {
+        fetch(this.batchURL)
+        .then(response => response.json())
+        .then(data => { 
+            this.state.batches = data;
+            console.log(this.state.batches);
+            //const html=this.buildTableRow(this.state.batches[0]);
+            //this.$tableBody.innerHTML=html;
+            //this.fillTable();
+        })
+        .catch(error => {
+          alert('There was a problem getting the batches info!'); 
+        });
+      }
